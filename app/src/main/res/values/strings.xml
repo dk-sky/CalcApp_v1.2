@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">CalcApp</string>
+
+    <string name="category_basic">basic</string>
+    <string name="category_advanced">advanced</string>
+
+    <string name="button1">1</string>
+    <string name="button2">2</string>
+    <string name="button3">3</string>
+    <string name="button4">4</string>
+    <string name="button5">5</string>
+    <string name="button6">6</string>
+    <string name="button7">7</string>
+    <string name="button8">8</string>
+    <string name="button9">9</string>
+    <string name="button0">0</string>
+    <string name="buttonClear">C</string>
+    <string name="buttonDelete">DEL</string>
+    <string name="buttonToggleSign">+/-</string>
+    <string name="buttonDot">.</string>
+    <string name="buttonDivide">/</string>
+    <string name="buttonMultiply">x</string>
+    <string name="buttonMinus">-</string>
+    <string name="buttonPlus">+</string>
+    <string name="buttonEqual">=</string>
+    <string name="buttonPercent">%</string>
+    <string name="buttonPower">^</string>
+    <string name="buttonSquareRoot">√</string>
+    <string name="buttonAbsolute">|x|</string>
+    <string name="buttonCubicRoot">³√</string>
+    <string name="buttonLeftP">(</string>
+    <string name="buttonRightP">)</string>
+    <string name="buttonSine">sin</string>
+    <string name="buttonCosine">cos</string>
+    <string name="buttonTangent">tan</string>
+    <string name="buttonFactorial">!</string>
+    <string name="buttonLogarithm">log</string>
+    <string name="buttonNatLogarithm">ln</string>
+    <string name="buttonPi">π</string>
+    <string name="buttonE">e</string>
+    <string name="buttonF">φ</string>
+
+    <string name="buttonMemClear">MC</string>
+    <string name="buttonMemAdd">M+</string>
+    <string name="buttonMemRemove">M-</string>
+    <string name="buttonMemRecall">MR</string>
+
+    <string name="buttonHistory">history</string>
+
+    <string name="preferences">Preferences</string>
+    <string name="history">History</string>
+    <string name="statistics">Statistics</string>
+
+    <string name="open">Open menu</string>
+    <string name="close">Close menu</string>
+    <string name="hint">Username</string>
+</resources>

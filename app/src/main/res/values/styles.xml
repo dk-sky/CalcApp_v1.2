@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Style for a tab that displays a category name -->
+    <style name="CategoryTab" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+        <item name="tabSelectedTextColor">@color/primaryText</item>
+        <item name="tabTextAppearance">@style/CategoryTabTextAppearance</item>
+    </style>
+
+    <!-- Text appearance style for a category tab -->
+    <style name="CategoryTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/colorPrimaryLight</item>
+    </style>
+
+    <style name="MainButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:layout_marginRight">1dp</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/work_sans_light</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/button</item>
+    </style>
+    <style name="FunctionButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:layout_marginRight">1dp</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/work_sans_light</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/button</item>
+    </style>
+</resources>

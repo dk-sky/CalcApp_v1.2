@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
+    <!-- first set -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="1dp">
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/button_operator"
+            android:text="@string/buttonMemClear"/>
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/button_operator"
+            android:text="@string/buttonMemRecall"/>
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/button_operator"
+            android:text="@string/buttonMemAdd"/>
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/button_operator"
+            android:text="@string/buttonMemRemove"/>
+    </LinearLayout>
+
+    <!-- second set -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="1dp">
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonCubicRoot" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonSquareRoot" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onLeftBracketClick"
+            android:text="@string/buttonLeftP" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onRightBracketClick"
+            android:text="@string/buttonRightP" />
+
+    </LinearLayout>
+
+    <!-- third set -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="1dp">
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:onClick="onOperatorClick"
+            android:text="@string/buttonPower" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onOperatorClick"
+            android:text="@string/buttonPercent" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonFactorial" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonAbsolute" />
+    </LinearLayout>
+
+    <!-- fourth set -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="1dp">
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonNatLogarithm" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonSine" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonCosine" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonTangent" />
+    </LinearLayout>
+
+
+    <!--fifth set-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="1dp">
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onFunctionClick"
+            android:text="@string/buttonLogarithm" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/buttonPi" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/buttonE" />
+
+        <Button
+            style="@style/FunctionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/buttonF" />
+
+    </LinearLayout>
+
+</LinearLayout>
