@@ -24,7 +24,7 @@
         <item name="android:layout_marginRight">1dp</item>
         <item name="android:textColor">@color/primaryText</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/work_sans_light</item>
-        <item name="android:textSize">40sp</item>
+        <item name="android:textSize">@dimen/main_text_button</item>
         <item name="android:padding">8dp</item>
         <item name="android:background">@drawable/button</item>
     </style>
@@ -32,7 +32,7 @@
         <item name="android:layout_marginRight">1dp</item>
         <item name="android:textColor">@color/primaryText</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/work_sans_light</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/function_text_button</item>
         <item name="android:padding">8dp</item>
         <item name="android:background">@drawable/button</item>
     </style>

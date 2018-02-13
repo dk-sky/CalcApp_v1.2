@@ -125,11 +125,11 @@ public class MainActivity extends AppCompatActivity {
                     .replace("√", "sqrt")
                     .replace("log", "log10")
                     .replace("ln", "log");
-            Expression expression = new ExpressionBuilder(input)
-                    .function(fact)
-                    .operator(percent)
-                    .build();
             try {
+                Expression expression = new ExpressionBuilder(input)
+                        .function(fact)
+                        .operator(percent)
+                        .build();
                 double result = expression.evaluate();
                 txtDisplay.setText(Double.toString(result));
                 lastDot = true;

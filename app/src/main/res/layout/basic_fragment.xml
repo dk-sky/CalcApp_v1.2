@@ -63,7 +63,7 @@
             android:layout_marginLeft="1dp"
             android:layout_weight="1"
             android:onClick="onDigitClick"
-            android:text="@string/button7"/>
+            android:text="@string/button7" />
 
         <Button
             style="@style/MainButtonStyle"
