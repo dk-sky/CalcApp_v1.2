@@ -12,35 +12,20 @@
         android:layout_marginBottom="1dp">
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginLeft="1dp"
-            android:textColor="@color/colorAccent"
+            android:layout_marginStart="1dp"
             android:background="@drawable/button_operator"
             android:text="@string/buttonMemClear"/>
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="@color/colorAccent"
             android:background="@drawable/button_operator"
             android:text="@string/buttonMemRecall"/>
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="@color/colorAccent"
             android:background="@drawable/button_operator"
             android:text="@string/buttonMemAdd"/>
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="@color/colorAccent"
             android:background="@drawable/button_operator"
             android:text="@string/buttonMemRemove"/>
     </LinearLayout>
@@ -53,35 +38,24 @@
         android:layout_marginBottom="1dp">
 
         <Button
-            style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
-            android:layout_weight="1"
+            android:layout_marginStart="1dp"
+            style="@style/FunctionButtonStyle"
             android:onClick="onFunctionClick"
             android:text="@string/buttonCubicRoot" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onFunctionClick"
             android:text="@string/buttonSquareRoot" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onLeftBracketClick"
             android:text="@string/buttonLeftP" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onRightBracketClick"
             android:text="@string/buttonRightP" />
 
@@ -96,34 +70,23 @@
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
-            android:layout_weight="1"
+            android:layout_marginStart="1dp"
             android:onClick="onOperatorClick"
             android:text="@string/buttonPower" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onOperatorClick"
             android:text="@string/buttonPercent" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onFunctionClick"
             android:text="@string/buttonFactorial" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onFunctionClick"
             android:text="@string/buttonAbsolute" />
     </LinearLayout>
@@ -137,34 +100,23 @@
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
-            android:layout_weight="1"
+            android:layout_marginStart="1dp"
             android:onClick="onFunctionClick"
             android:text="@string/buttonNatLogarithm" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onFunctionClick"
             android:text="@string/buttonSine" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onFunctionClick"
             android:text="@string/buttonCosine" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onFunctionClick"
             android:text="@string/buttonTangent" />
     </LinearLayout>
@@ -178,32 +130,22 @@
         android:layout_marginBottom="1dp">
 
         <Button
+            android:layout_marginLeft="1dp"
+            android:layout_marginStart="1dp"
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onFunctionClick"
             android:text="@string/buttonLogarithm" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:text="@string/buttonPi" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:text="@string/buttonE" />
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:text="@string/buttonF" />
 
     </LinearLayout>

@@ -21,6 +21,9 @@
     </style>
 
     <style name="MainButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_marginRight">1dp</item>
         <item name="android:textColor">@color/primaryText</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/work_sans_light</item>
@@ -29,8 +32,11 @@
         <item name="android:background">@drawable/button</item>
     </style>
     <style name="FunctionButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_marginRight">1dp</item>
-        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/work_sans_light</item>
         <item name="android:textSize">@dimen/function_text_button</item>
         <item name="android:padding">8dp</item>

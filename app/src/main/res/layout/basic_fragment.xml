@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,36 +14,23 @@
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
-            android:layout_weight="1"
+            android:layout_marginStart="1dp"
             android:onClick="onClearClick"
             android:text="@string/buttonClear"
-            android:textColor="@color/colorAccent"/>
+            android:layout_weight="2"
+            android:textColor="@color/colorAccent"
+            tools:ignore="NestedWeights" />
+
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/buttonToggleSign"
-            android:textColor="@color/colorAccent"/>
-
-        <Button
-            style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onDeleteClick"
             android:text="@string/buttonDelete"
             android:textColor="@color/colorAccent"/>
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@drawable/button_operator"
             android:onClick="onOperatorClick"
             android:text="@string/buttonDivide"
@@ -58,34 +46,23 @@
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
-            android:layout_weight="1"
+            android:layout_marginStart="1dp"
             android:onClick="onDigitClick"
             android:text="@string/button7" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onDigitClick"
             android:text="@string/button8" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onDigitClick"
             android:text="@string/button9" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@drawable/button_operator"
             android:onClick="onOperatorClick"
             android:text="@string/buttonMultiply"
@@ -101,34 +78,24 @@
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
-            android:layout_weight="1"
+            android:layout_marginStart="1dp"
             android:onClick="onDigitClick"
             android:text="@string/button4" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onDigitClick"
             android:text="@string/button5" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onDigitClick"
             android:text="@string/button6"/>
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@drawable/button_operator"
             android:onClick="onOperatorClick"
             android:text="@string/buttonMinus"
@@ -144,34 +111,24 @@
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
-            android:layout_weight="1"
+            android:layout_marginStart="1dp"
             android:onClick="onDigitClick"
             android:text="@string/button1" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onDigitClick"
             android:text="@string/button2" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onDigitClick"
             android:text="@string/button3" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@drawable/button_operator"
             android:onClick="onOperatorClick"
             android:text="@string/buttonPlus"
@@ -188,26 +145,20 @@
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
+            android:layout_marginStart="1dp"
             android:layout_weight="2"
             android:onClick="onDigitClick"
-            android:text="@string/button0" />
+            android:text="@string/button0"
+            tools:ignore="NestedWeights"/>
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:onClick="onDotClick"
             android:text="@string/buttonDot" />
 
         <Button
             style="@style/MainButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@drawable/button_extra"
             android:onClick="onEqual"
             android:text="@string/buttonEqual"
