@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    tools:ignore="NestedWeights,RtlHardcoded">
     <!-- first set -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +16,6 @@
         <Button
             style="@style/MainButtonStyle"
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             android:onClick="onClearClick"
             android:text="@string/buttonClear"
             android:layout_weight="2"
@@ -47,7 +47,6 @@
         <Button
             style="@style/MainButtonStyle"
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             android:onClick="onDigitClick"
             android:text="@string/button7" />
 
@@ -79,7 +78,6 @@
         <Button
             style="@style/MainButtonStyle"
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             android:onClick="onDigitClick"
             android:text="@string/button4" />
 
@@ -112,7 +110,6 @@
         <Button
             style="@style/MainButtonStyle"
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             android:onClick="onDigitClick"
             android:text="@string/button1" />
 
@@ -146,11 +143,9 @@
         <Button
             style="@style/MainButtonStyle"
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             android:layout_weight="2"
             android:onClick="onDigitClick"
-            android:text="@string/button0"
-            tools:ignore="NestedWeights"/>
+            android:text="@string/button0" />
 
         <Button
             style="@style/MainButtonStyle"

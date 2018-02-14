@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    tools:ignore="RtlHardcoded" >
     <!-- first set -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +15,6 @@
         <Button
             style="@style/FunctionButtonStyle"
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             android:background="@drawable/button_operator"
             android:text="@string/buttonMemClear"/>
         <Button
@@ -39,7 +40,6 @@
 
         <Button
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             style="@style/FunctionButtonStyle"
             android:onClick="onFunctionClick"
             android:text="@string/buttonCubicRoot" />
@@ -71,7 +71,6 @@
         <Button
             style="@style/FunctionButtonStyle"
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             android:onClick="onOperatorClick"
             android:text="@string/buttonPower" />
 
@@ -101,7 +100,6 @@
         <Button
             style="@style/FunctionButtonStyle"
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             android:onClick="onFunctionClick"
             android:text="@string/buttonNatLogarithm" />
 
@@ -131,7 +129,6 @@
 
         <Button
             android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
             style="@style/FunctionButtonStyle"
             android:onClick="onFunctionClick"
             android:text="@string/buttonLogarithm" />
