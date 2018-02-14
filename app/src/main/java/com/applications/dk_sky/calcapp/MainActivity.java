@@ -18,6 +18,8 @@ import net.objecthunter.exp4j.operator.Operator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.IllegalFormatException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     private static final String DIGITS = "0123456789";
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean lastDigit;
     private boolean lastDot;
     private boolean lastOpenBracket;
+    private boolean hasDot = false;
     private int bracketsToClose;
 
     @Override
@@ -89,24 +92,41 @@ public class MainActivity extends AppCompatActivity {
         }
         lastDigit = true;
         lastOpenBracket = false;
+        lastDot = false;
     }
 
     // Pressing Operator
     public void onOperatorClick(View v) {
         Button button = (Button) v;
-        boolean isRightParenthesis = txtDisplay.getText().toString().endsWith(")");
-        if ((isRightParenthesis || lastDigit)) {
-            txtDisplay.append(button.getText());
-            lastDigit = false;
-            lastDot = false;
-        } else if (!lastOpenBracket) {
-            String oldValue = txtDisplay.getText().toString();
-            oldValue = oldValue.substring(0, oldValue.length() - 1);
-            txtDisplay.setText(oldValue);
-            txtDisplay.append(button.getText().toString());
-            lastDot = false;
-            lastDigit = false;
+        String operator = button.getText().toString();
+        boolean isRightBracket = txtDisplay.getText().toString().endsWith(")");
+        boolean isLeftBracket = txtDisplay.getText().toString().endsWith("(");
+        String oldValue = txtDisplay.getText().toString();
+        oldValue = oldValue.substring(0, oldValue.length() - 1);
+        if (operator.equals("+") || operator.equals("-")) {
+            if ((isLeftBracket || isRightBracket || lastDigit)) {
+                txtDisplay.append(button.getText());
+                lastDigit = false;
+                lastDot = false;
+            } else {
+                txtDisplay.setText(oldValue);
+                txtDisplay.append(button.getText().toString());
+                lastDot = false;
+                lastDigit = false;
+            }
+        } else {
+            if ((isRightBracket || lastDigit)) {
+                txtDisplay.append(button.getText());
+                lastDigit = false;
+                lastDot = false;
+            } else if (!lastOpenBracket) {
+                txtDisplay.setText(oldValue);
+                txtDisplay.append(button.getText().toString());
+                lastDot = false;
+                lastDigit = false;
+            }
         }
+        hasDot=false;
     }
 
     // Pressing "="
@@ -163,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         // Setting appropriate flags after each character deletion
         if (oldValue.endsWith(".")) {
             lastDot = false;
+            hasDot = false;
         }
         updateFlags();
     }
@@ -177,6 +198,12 @@ public class MainActivity extends AppCompatActivity {
             newLastChar = String.valueOf(newValue.charAt(0));
         }
         if (DIGITS.contains(newLastChar)) {
+            String[] parts = newValue.split("[+\\-%^x/()]");
+            String lastNumber = parts[parts.length - 1];
+            Log.i("lastNumber", lastNumber);
+            if (lastNumber.contains(".")) {
+                hasDot = true;
+            }
             lastDigit = true;
             lastOpenBracket = false;
         } else if (newLastChar.equals(".")) {
@@ -202,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
         lastOpenBracket = false;
         lastDigit = true;
         lastDot = false;
+        hasDot = false;
     }
 
     // Pressing "."
@@ -215,10 +243,11 @@ public class MainActivity extends AppCompatActivity {
             isLeftBracket = false;
             isRightBracket = false;
         }
-        if (!isLeftBracket && !isRightBracket && lastDigit && !lastDot) {
+        if (!isLeftBracket && !isRightBracket && lastDigit && !lastDot && !hasDot) {
             txtDisplay.append(".");
             lastDigit = false;
             lastDot = true;
+            hasDot = true;
         }
     }
 
@@ -228,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
         lastDigit = false;
         lastOpenBracket = true;
         bracketsToClose++;
+        hasDot=false;
     }
 
     // Pressing ")"
@@ -236,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
             txtDisplay.append(")");
             bracketsToClose--;
             lastOpenBracket = false;
+            hasDot = false;
         }
     }
 
@@ -264,6 +295,9 @@ public class MainActivity extends AppCompatActivity {
         bracketsToClose++;
         lastDigit = false;
         lastDot = false;
+        if (hasDot) {
+            hasDot = false;
+        }
     }
 
     //Custom functions and operators for expression
