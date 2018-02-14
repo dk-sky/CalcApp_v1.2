@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String CONSTANTS = "πeφ";
 
     private TextView txtDisplay;
+    double calcMemory = 0;
 
     // Condition flags and counters for proper behavior
     // and functionality of Delete button
@@ -40,15 +41,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         // *** Layout-dependent logic ***
-        // Set views for landscape and portrait layouts
         Configuration configuration = getResources().getConfiguration();
-        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_main);
-
-        } else if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setContentView(R.layout.activity_main);
+        if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             ViewPager viewPager = findViewById(R.id.viewpager);
             KeyAdapter adapter = new KeyAdapter(this, getSupportFragmentManager());
             viewPager.setAdapter(adapter);
@@ -72,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         // Save variables on screen rotate
         outState.putString("DISPLAY", txtDisplay.getText().toString());
         outState.putInt("BRACKETS", bracketsToClose);
+        outState.putBoolean("HASDOT",hasDot);
+        outState.putDouble("MEMORY",calcMemory);
     }
 
     @Override
@@ -80,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         // Restore variables on screen rotate
         txtDisplay.setText(savedInstanceState.getString("DISPLAY"));
         bracketsToClose = savedInstanceState.getInt("BRACKETS");
+        hasDot = savedInstanceState.getBoolean("HASDOT");
+        calcMemory = savedInstanceState.getDouble("MEMORY");
         updateFlags();
     }
 
@@ -133,34 +134,99 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void onEqual(View view) {
         if (lastDigit) {
-            if (bracketsToClose > 0) {
-                while (bracketsToClose > 0) {
-                    txtDisplay.append(")");
-                    bracketsToClose--;
-                }
-            }
-            // Get input to parse into expression, format it and evaluate
-            String input = txtDisplay.getText().toString();
-            input = input.replace("x", "*")
-                    .replace("³√", "cbrt")
-                    .replace("√", "sqrt")
-                    .replace("log", "log10")
-                    .replace("ln", "log");
             try {
-                Expression expression = new ExpressionBuilder(input)
-                        .function(fact)
-                        .operator(percent)
-                        .build();
-                double result = expression.evaluate();
+                if (bracketsToClose > 0) {
+                    while (bracketsToClose > 0) {
+                        txtDisplay.append(")");
+                        bracketsToClose--;
+                    }
+                }
+                // Get input to parse into expression, format it and evaluate
+                String input = txtDisplay.getText().toString();
+                double result = calculateResult(input);
                 txtDisplay.setText(Double.toString(result));
-                lastDot = true;
-                lastDigit = true;
+                updateFlags();
             } catch (ArithmeticException ex) {
                 Toast.makeText(this, "This operation is not allowed", Toast.LENGTH_SHORT).show();
             } catch (IllegalArgumentException | IllegalStateException ex) {
                 Toast.makeText(this, "Something wrong with your expression. Check for mistakes", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    // Pressing "M+"
+    public void memoryAdd(View view) {
+        if (lastDigit) {
+            try {
+                if (bracketsToClose > 0) {
+                    while (bracketsToClose > 0) {
+                        txtDisplay.append(")");
+                        bracketsToClose--;
+                    }
+                }
+                String input = txtDisplay.getText().toString();
+                double result = calculateResult(input);
+                calcMemory += result;
+                Toast.makeText(this, "Result saved to memory", Toast.LENGTH_SHORT).show();
+            } catch (ArithmeticException ex) {
+                Toast.makeText(this, "This operation is not allowed", Toast.LENGTH_SHORT).show();
+            } catch (IllegalArgumentException | IllegalStateException ex) {
+                Toast.makeText(this, "Something wrong with your expression. Check for mistakes", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Cannot be saved while expression isn't finished", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Pressing "M-"
+    public void memorySubtract(View view) {
+        if (lastDigit) {
+            if (bracketsToClose > 0) {
+                while (bracketsToClose > 0) {
+                    txtDisplay.append(")");
+                    bracketsToClose--;
+                }
+            }
+            String input = txtDisplay.getText().toString();
+            try {
+                double result = calculateResult(input);
+                calcMemory -= result;
+                Toast.makeText(this, "Result subtracted from memory", Toast.LENGTH_SHORT).show();
+            } catch (ArithmeticException ex) {
+                Toast.makeText(this, "This operation is not allowed", Toast.LENGTH_SHORT).show();
+            } catch (IllegalArgumentException | IllegalStateException ex) {
+                Toast.makeText(this, "Something wrong with your expression. Check for mistakes", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Cannot be saved while expression isn't finished", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Pressing "MR"
+    @SuppressLint("SetTextI18n")
+    public void memoryRecall(View view) {
+        txtDisplay.setText(Double.toString(calcMemory));
+        updateFlags();
+    }
+
+    // Pressing "MC"
+    public void memoryClear(View view) {
+        calcMemory = 0;
+        Toast.makeText(this, "Memory cleared", Toast.LENGTH_SHORT).show();
+    }
+
+    // Expression evaluation logic
+    private double calculateResult(String input) throws ArithmeticException,IllegalArgumentException {
+        input = input.replace("x", "*")
+                .replace("³√", "cbrt")
+                .replace("√", "sqrt")
+                .replace("log", "log10")
+                .replace("ln", "log");
+            Expression expression = new ExpressionBuilder(input)
+                    .function(fact)
+                    .operator(percent)
+                    .build();
+        return expression.evaluate();
     }
 
     // Pressing "DEL"

@@ -12,23 +12,31 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginBottom="1dp">
+
         <Button
             style="@style/FunctionButtonStyle"
             android:layout_marginLeft="1dp"
             android:background="@drawable/button_operator"
-            android:text="@string/buttonMemClear"/>
+            android:onClick="memoryClear"
+            android:text="@string/buttonMemClear" />
+
         <Button
             style="@style/FunctionButtonStyle"
             android:background="@drawable/button_operator"
-            android:text="@string/buttonMemRecall"/>
+            android:onClick="memoryRecall"
+            android:text="@string/buttonMemRecall" />
+
         <Button
             style="@style/FunctionButtonStyle"
             android:background="@drawable/button_operator"
-            android:text="@string/buttonMemAdd"/>
+            android:onClick="memoryAdd"
+            android:text="@string/buttonMemAdd" />
+
         <Button
             style="@style/FunctionButtonStyle"
             android:background="@drawable/button_operator"
-            android:text="@string/buttonMemRemove"/>
+            android:onClick="memorySubtract"
+            android:text="@string/buttonMemRemove" />
     </LinearLayout>
 
     <!-- second set -->
