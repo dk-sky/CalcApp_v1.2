@@ -135,15 +135,18 @@
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:text="@string/buttonPi" />
+            android:text="@string/buttonPi"
+            android:onClick="onDigitClick"/>
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:text="@string/buttonE" />
+            android:text="@string/buttonE"
+            android:onClick="onDigitClick"/>
 
         <Button
             style="@style/FunctionButtonStyle"
-            android:text="@string/buttonF" />
+            android:text="@string/buttonF"
+            android:onClick="onDigitClick"/>
 
     </LinearLayout>
 

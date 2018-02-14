@@ -1,5 +1,6 @@
 package com.applications.dk_sky.calcapp;
 
+import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -24,6 +25,7 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
     private static final String DIGITS = "0123456789";
     private static final String OPERATORS = "+-/x^%";
+    private static final String CONSTANTS = "πeφ";
 
     private TextView txtDisplay;
 
@@ -83,8 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Pressing Digit
-    public void onDigitClick(View v) {
-        Button button = (Button) v;
+    public void onDigitClick(View view) {
+        Button button = (Button) view;
+        String text = button.getText().toString();
         if (txtDisplay.getText().toString().equals("0")) {
             txtDisplay.setText(button.getText());
         } else {
@@ -93,11 +96,14 @@ public class MainActivity extends AppCompatActivity {
         lastDigit = true;
         lastOpenBracket = false;
         lastDot = false;
+        if (CONSTANTS.contains(text)) {
+            hasDot=true;
+        }
     }
 
     // Pressing Operator
-    public void onOperatorClick(View v) {
-        Button button = (Button) v;
+    public void onOperatorClick(View view) {
+        Button button = (Button) view;
         String operator = button.getText().toString();
         boolean isRightBracket = txtDisplay.getText().toString().endsWith(")");
         boolean isLeftBracket = txtDisplay.getText().toString().endsWith("(");
@@ -106,30 +112,25 @@ public class MainActivity extends AppCompatActivity {
         if (operator.equals("+") || operator.equals("-")) {
             if ((isLeftBracket || isRightBracket || lastDigit)) {
                 txtDisplay.append(button.getText());
-                lastDigit = false;
-                lastDot = false;
             } else {
                 txtDisplay.setText(oldValue);
                 txtDisplay.append(button.getText().toString());
-                lastDot = false;
-                lastDigit = false;
             }
         } else {
             if ((isRightBracket || lastDigit)) {
                 txtDisplay.append(button.getText());
-                lastDigit = false;
-                lastDot = false;
             } else if (!lastOpenBracket) {
                 txtDisplay.setText(oldValue);
                 txtDisplay.append(button.getText().toString());
-                lastDot = false;
-                lastDigit = false;
             }
         }
+        lastDot = false;
+        lastDigit = false;
         hasDot=false;
     }
 
     // Pressing "="
+    @SuppressLint("SetTextI18n")
     public void onEqual(View view) {
         if (lastDigit) {
             if (bracketsToClose > 0) {
@@ -200,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         if (DIGITS.contains(newLastChar)) {
             String[] parts = newValue.split("[+\\-%^x/()]");
             String lastNumber = parts[parts.length - 1];
-            Log.i("lastNumber", lastNumber);
             if (lastNumber.contains(".")) {
                 hasDot = true;
             }
@@ -271,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Pressing function buttons
+    @SuppressLint("SetTextI18n")
     public void onFunctionClick(View view) {
         Button button = (Button) view;
         if (txtDisplay.getText().toString().equals("0")) {
