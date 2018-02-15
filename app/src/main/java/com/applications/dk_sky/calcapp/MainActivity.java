@@ -2,8 +2,10 @@ package com.applications.dk_sky.calcapp;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private static double calcMemory = 0;
     private static String userName;
     private static int buttonsPressed;
-    private static boolean dialogShowed;
+    private static AlertDialog dialog;
 
 
     // Condition flags and counters for proper behavior
@@ -44,12 +46,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (!dialogShowed) {
-            dialogShowed = true;
-            openDialog();
+        Log.i("Lifecycle", "Created");
+        if (userName == null) {
+            Log.i("Lifecycle", "user name is empty");
         }
-
         // *** Layout-dependent logic ***
         Configuration configuration = getResources().getConfiguration();
         if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -71,16 +71,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("Lifecycle", "Resume");
+        if (userName == null) {
+            openDialog();
+            Log.i("Lifecycle", "Show dialog");
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("Lifecycle", "Pause");
+        if (dialog != null) {
+            dialog.dismiss();
+            Log.i("onPause", "dismiss dialog");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("Lifecycle", "Destroy");
+    }
+
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         // Save variables on screen rotate
         outState.putString("DISPLAY", txtDisplay.getText().toString());
         outState.putInt("BRACKETS", bracketsToClose);
-        outState.putBoolean("HASDOT",hasDot);
-        outState.putDouble("MEMORY",calcMemory);
+        outState.putBoolean("HASDOT", hasDot);
+        outState.putDouble("MEMORY", calcMemory);
         outState.putString("USERNAME", userName);
         outState.putInt("BUTTONSPRESSED", buttonsPressed);
-        outState.putBoolean("DIALOG", dialogShowed);
+
     }
 
     @Override
@@ -93,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         calcMemory = savedInstanceState.getDouble("MEMORY");
         userName = savedInstanceState.getString("USERNAME");
         buttonsPressed = savedInstanceState.getInt("BUTTONSPRESSED");
-        dialogShowed = savedInstanceState.getBoolean("DIALOG");
         updateFlags();
     }
 
@@ -108,20 +134,20 @@ public class MainActivity extends AppCompatActivity {
                 String insertedName = editUserName.getText().toString();
                 if (!insertedName.isEmpty()) {
                     userName = insertedName;
-                    dialog.dismiss();
                     Log.i("login", "username " + userName);
+                    dialog.dismiss();
                 } else {
                     userName = getResources().getString(R.string.placeholder);
-                    dialog.dismiss();
                     Log.i("login", "username " + userName);
                 }
             }
         });
         dialogBuilder.setCancelable(false);
         dialogBuilder.setView(view);
-        AlertDialog dialog = dialogBuilder.create();
+        dialog = dialogBuilder.create();
         dialog.show();
     }
+
 
     ////**************************      CALCULATOR LOGIC        ************************************
 
@@ -139,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         lastOpenBracket = false;
         lastDot = false;
         if (CONSTANTS.contains(text)) {
-            hasDot=true;
+            hasDot = true;
         }
     }
 
@@ -169,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         }
         lastDot = false;
         lastDigit = false;
-        hasDot=false;
+        hasDot = false;
     }
 
     // Pressing "="
@@ -265,16 +291,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Expression evaluation logic
-    private double calculateResult(String input) throws ArithmeticException,IllegalArgumentException {
+    private double calculateResult(String input) throws ArithmeticException, IllegalArgumentException {
         input = input.replace("x", "*")
                 .replace("³√", "cbrt")
                 .replace("√", "sqrt")
                 .replace("log", "log10")
                 .replace("ln", "log");
-            Expression expression = new ExpressionBuilder(input)
-                    .function(fact)
-                    .operator(percent)
-                    .build();
+        Expression expression = new ExpressionBuilder(input)
+                .function(fact)
+                .operator(percent)
+                .build();
         return expression.evaluate();
     }
 
@@ -376,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
         lastDigit = false;
         lastOpenBracket = true;
         bracketsToClose++;
-        hasDot=false;
+        hasDot = false;
     }
 
     // Pressing ")"
