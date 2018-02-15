@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String CONSTANTS = "πeφ";
 
     private TextView txtDisplay;
-    private double calcMemory = 0;
+    private static double calcMemory = 0;
     private static String userName;
-    private int buttonsPressed;
+    private static int buttonsPressed;
+    private static boolean dialogShowed;
 
 
     // Condition flags and counters for proper behavior
@@ -41,9 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        openDialog();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (!dialogShowed) {
+            dialogShowed = true;
+            openDialog();
+        }
 
         // *** Layout-dependent logic ***
         Configuration configuration = getResources().getConfiguration();
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putDouble("MEMORY",calcMemory);
         outState.putString("USERNAME", userName);
         outState.putInt("BUTTONSPRESSED", buttonsPressed);
+        outState.putBoolean("DIALOG", dialogShowed);
     }
 
     @Override
@@ -87,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         calcMemory = savedInstanceState.getDouble("MEMORY");
         userName = savedInstanceState.getString("USERNAME");
         buttonsPressed = savedInstanceState.getInt("BUTTONSPRESSED");
+        dialogShowed = savedInstanceState.getBoolean("DIALOG");
         updateFlags();
     }
 
@@ -185,9 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
                 buttonsPressed = 0;
             } catch (ArithmeticException ex) {
-                Toast.makeText(this, "This operation is not allowed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.arithmeticException), Toast.LENGTH_SHORT).show();
             } catch (IllegalArgumentException | IllegalStateException ex) {
-                Toast.makeText(this, "Something wrong with your expression. Check for mistakes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.illegalArgumentException), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -206,14 +213,14 @@ public class MainActivity extends AppCompatActivity {
                 String input = txtDisplay.getText().toString();
                 double result = calculateResult(input);
                 calcMemory += result;
-                Toast.makeText(this, "Result saved to memory", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.addMemory), Toast.LENGTH_SHORT).show();
             } catch (ArithmeticException ex) {
-                Toast.makeText(this, "This operation is not allowed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.arithmeticException), Toast.LENGTH_SHORT).show();
             } catch (IllegalArgumentException | IllegalStateException ex) {
-                Toast.makeText(this, "Something wrong with your expression. Check for mistakes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.illegalArgumentException), Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this, "Cannot be saved while expression isn't finished", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.cannotBeSaved), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -231,14 +238,14 @@ public class MainActivity extends AppCompatActivity {
             try {
                 double result = calculateResult(input);
                 calcMemory -= result;
-                Toast.makeText(this, "Result subtracted from memory", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.subtractMemory), Toast.LENGTH_SHORT).show();
             } catch (ArithmeticException ex) {
-                Toast.makeText(this, "This operation is not allowed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.arithmeticException), Toast.LENGTH_SHORT).show();
             } catch (IllegalArgumentException | IllegalStateException ex) {
-                Toast.makeText(this, "Something wrong with your expression. Check for mistakes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.illegalArgumentException), Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this, "Cannot be saved while expression isn't finished", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.cannotBeSaved), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -254,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
     public void memoryClear(View view) {
         buttonsPressed++;
         calcMemory = 0;
-        Toast.makeText(this, "Memory cleared", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.clearMemory), Toast.LENGTH_SHORT).show();
     }
 
     // Expression evaluation logic
