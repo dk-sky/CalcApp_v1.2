@@ -1,14 +1,17 @@
 package com.applications.dk_sky.calcapp;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,18 +20,16 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.IllegalFormatException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class MainActivity extends AppCompatActivity {
     private static final String DIGITS = "0123456789";
     private static final String OPERATORS = "+-/x^%";
     private static final String CONSTANTS = "πeφ";
 
     private TextView txtDisplay;
-    double calcMemory = 0;
+    private double calcMemory = 0;
+    private static String userName;
+    private int buttonsPressed;
+
 
     // Condition flags and counters for proper behavior
     // and functionality of Delete button
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        openDialog();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("BRACKETS", bracketsToClose);
         outState.putBoolean("HASDOT",hasDot);
         outState.putDouble("MEMORY",calcMemory);
+        outState.putString("USERNAME", userName);
+        outState.putInt("BUTTONSPRESSED", buttonsPressed);
     }
 
     @Override
@@ -81,12 +85,42 @@ public class MainActivity extends AppCompatActivity {
         bracketsToClose = savedInstanceState.getInt("BRACKETS");
         hasDot = savedInstanceState.getBoolean("HASDOT");
         calcMemory = savedInstanceState.getDouble("MEMORY");
+        userName = savedInstanceState.getString("USERNAME");
+        buttonsPressed = savedInstanceState.getInt("BUTTONSPRESSED");
         updateFlags();
     }
 
+    public void openDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this, R.style.DialogTheme);
+        View view = getLayoutInflater().inflate(R.layout.layout_dialogue, null);
+        final EditText editUserName = view.findViewById(R.id.edit_username);
+
+        dialogBuilder.setPositiveButton(R.string.loginButton, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String insertedName = editUserName.getText().toString();
+                if (!insertedName.isEmpty()) {
+                    userName = insertedName;
+                    dialog.dismiss();
+                    Log.i("login", "username " + userName);
+                } else {
+                    userName = getResources().getString(R.string.placeholder);
+                    dialog.dismiss();
+                    Log.i("login", "username " + userName);
+                }
+            }
+        });
+        dialogBuilder.setCancelable(false);
+        dialogBuilder.setView(view);
+        AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
+    }
+
+    ////**************************      CALCULATOR LOGIC        ************************************
 
     // Pressing Digit
     public void onDigitClick(View view) {
+        buttonsPressed++;
         Button button = (Button) view;
         String text = button.getText().toString();
         if (txtDisplay.getText().toString().equals("0")) {
@@ -104,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Pressing Operator
     public void onOperatorClick(View view) {
+        buttonsPressed++;
         Button button = (Button) view;
         String operator = button.getText().toString();
         boolean isRightBracket = txtDisplay.getText().toString().endsWith(")");
@@ -133,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
     // Pressing "="
     @SuppressLint("SetTextI18n")
     public void onEqual(View view) {
+        buttonsPressed++;
         if (lastDigit) {
             try {
                 if (bracketsToClose > 0) {
@@ -146,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
                 double result = calculateResult(input);
                 txtDisplay.setText(Double.toString(result));
                 updateFlags();
+
+                buttonsPressed = 0;
             } catch (ArithmeticException ex) {
                 Toast.makeText(this, "This operation is not allowed", Toast.LENGTH_SHORT).show();
             } catch (IllegalArgumentException | IllegalStateException ex) {
@@ -156,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Pressing "M+"
     public void memoryAdd(View view) {
+        buttonsPressed++;
         if (lastDigit) {
             try {
                 if (bracketsToClose > 0) {
@@ -180,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Pressing "M-"
     public void memorySubtract(View view) {
+        buttonsPressed++;
         if (lastDigit) {
             if (bracketsToClose > 0) {
                 while (bracketsToClose > 0) {
@@ -205,12 +245,14 @@ public class MainActivity extends AppCompatActivity {
     // Pressing "MR"
     @SuppressLint("SetTextI18n")
     public void memoryRecall(View view) {
+        buttonsPressed++;
         txtDisplay.setText(Double.toString(calcMemory));
         updateFlags();
     }
 
     // Pressing "MC"
     public void memoryClear(View view) {
+        buttonsPressed++;
         calcMemory = 0;
         Toast.makeText(this, "Memory cleared", Toast.LENGTH_SHORT).show();
     }
@@ -231,6 +273,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Pressing "DEL"
     public void onDeleteClick(View view) {
+        buttonsPressed++;
         String oldValue = txtDisplay.getText().toString();
         String newValue;
         if (oldValue.length() > 1) {
@@ -290,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Pressing "Clear"
     public void onClearClick(View view) {
+        buttonsPressed = 0;
         txtDisplay.setText("0");
         bracketsToClose = 0;
         lastOpenBracket = false;
@@ -300,6 +344,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Pressing "."
     public void onDotClick(View view) {
+        buttonsPressed++;
         boolean isRightBracket;
         boolean isLeftBracket;
         if (txtDisplay.length() > 0) {
@@ -319,6 +364,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Pressing "("
     public void onLeftBracketClick(View view) {
+        buttonsPressed++;
         txtDisplay.append("(");
         lastDigit = false;
         lastOpenBracket = true;
@@ -328,6 +374,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Pressing ")"
     public void onRightBracketClick(View view) {
+        buttonsPressed++;
         if (lastDigit && bracketsToClose > 0) {
             txtDisplay.append(")");
             bracketsToClose--;
@@ -339,6 +386,7 @@ public class MainActivity extends AppCompatActivity {
     // Pressing function buttons
     @SuppressLint("SetTextI18n")
     public void onFunctionClick(View view) {
+        buttonsPressed++;
         Button button = (Button) view;
         if (txtDisplay.getText().toString().equals("0")) {
             if (button.getText().equals("|x|")) {
@@ -362,9 +410,7 @@ public class MainActivity extends AppCompatActivity {
         bracketsToClose++;
         lastDigit = false;
         lastDot = false;
-        if (hasDot) {
-            hasDot = false;
-        }
+        hasDot = false;
     }
 
     //Custom functions and operators for expression

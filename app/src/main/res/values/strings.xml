@@ -53,5 +53,9 @@
 
     <string name="open">Open menu</string>
     <string name="close">Close menu</string>
-    <string name="hint">Username</string>
+    <string name="placeholder">John Doe</string>
+    <string name="login">Please enter your name</string>
+    <string name="loginButton">OK</string>
+    <string name="dismissButton">Cancel</string>
+
 </resources>
