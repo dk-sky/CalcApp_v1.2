@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_basic">básico</string>
+    <string name="category_advanced">avanzado</string>
+    <string name="buttonHistory">historial</string>
+    <string name="history">historial</string>
+    <string name="open">Abrir menú</string>
+    <string name="close">Cerrar menú</string>
+    <string name="login">Por favor ingrese su nombre</string>
+    <string name="userName">Nombre</string>
+    <string name="buttonsClicked">Número de botones pulsados</string>
+    <string name="expression">Expresión</string>
+    <string name="result">Resultado</string>
+    <string name="clearHistory">Borrar historial</string>
+    <string name="about">Sobre</string>
+    <string name="arithmeticException">Esta operación no está permitida</string>
+    <string name="illegalArgumentException">Algo mal con su expresión. Buscar errores</string>
+    <string name="addMemory">Resultado guardado en la memoria</string>
+    <string name="subtractMemory">Resultado restado de la memoria</string>
+    <string name="clearMemory">Memoria despejada</string>
+    <string name="cannotBeSaved">No se puede guardar mientras la expresión no está terminada</string>
+</resources>

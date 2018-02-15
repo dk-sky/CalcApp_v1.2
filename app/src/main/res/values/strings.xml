@@ -1,61 +1,73 @@
 <resources>
-    <string name="app_name">CalcApp</string>
+    <string name="app_name" translatable="false">CalcApp</string>
 
     <string name="category_basic">basic</string>
     <string name="category_advanced">advanced</string>
 
-    <string name="button1">1</string>
-    <string name="button2">2</string>
-    <string name="button3">3</string>
-    <string name="button4">4</string>
-    <string name="button5">5</string>
-    <string name="button6">6</string>
-    <string name="button7">7</string>
-    <string name="button8">8</string>
-    <string name="button9">9</string>
-    <string name="button0">0</string>
-    <string name="buttonClear">C</string>
-    <string name="buttonDelete">DEL</string>
-    <string name="buttonToggleSign">+/-</string>
-    <string name="buttonDot">.</string>
-    <string name="buttonDivide">/</string>
-    <string name="buttonMultiply">x</string>
-    <string name="buttonMinus">-</string>
-    <string name="buttonPlus">+</string>
-    <string name="buttonEqual">=</string>
-    <string name="buttonPercent">%</string>
-    <string name="buttonPower">^</string>
-    <string name="buttonSquareRoot">√</string>
-    <string name="buttonAbsolute">|x|</string>
-    <string name="buttonCubicRoot">³√</string>
-    <string name="buttonLeftP">(</string>
-    <string name="buttonRightP">)</string>
-    <string name="buttonSine">sin</string>
-    <string name="buttonCosine">cos</string>
-    <string name="buttonTangent">tan</string>
-    <string name="buttonFactorial">!</string>
-    <string name="buttonLogarithm">log</string>
-    <string name="buttonNatLogarithm">ln</string>
-    <string name="buttonPi">π</string>
-    <string name="buttonE">e</string>
-    <string name="buttonF">φ</string>
+    <string name="button1" translatable="false">1</string>
+    <string name="button2" translatable="false">2</string>
+    <string name="button3" translatable="false">3</string>
+    <string name="button4" translatable="false">4</string>
+    <string name="button5" translatable="false">5</string>
+    <string name="button6" translatable="false">6</string>
+    <string name="button7" translatable="false">7</string>
+    <string name="button8" translatable="false">8</string>
+    <string name="button9" translatable="false">9</string>
+    <string name="button0" translatable="false">0</string>
+    <string name="buttonClear" translatable="false">C</string>
+    <string name="buttonDelete" translatable="false">DEL</string>
+    <string name="buttonDot" translatable="false">.</string>
+    <string name="buttonDivide" translatable="false">/</string>
+    <string name="buttonMultiply" translatable="false">x</string>
+    <string name="buttonMinus" translatable="false">-</string>
+    <string name="buttonPlus" translatable="false">+</string>
+    <string name="buttonEqual" translatable="false">=</string>
+    <string name="buttonPercent" translatable="false">%</string>
+    <string name="buttonPower" translatable="false">^</string>
+    <string name="buttonSquareRoot" translatable="false">√</string>
+    <string name="buttonAbsolute" translatable="false">|x|</string>
+    <string name="buttonCubicRoot" translatable="false">³√</string>
+    <string name="buttonLeftP" translatable="false">(</string>
+    <string name="buttonRightP" translatable="false">)</string>
+    <string name="buttonSine" translatable="false">sin</string>
+    <string name="buttonCosine" translatable="false">cos</string>
+    <string name="buttonTangent" translatable="false">tan</string>
+    <string name="buttonFactorial" translatable="false">!</string>
+    <string name="buttonLogarithm" translatable="false">log</string>
+    <string name="buttonNatLogarithm" translatable="false">ln</string>
+    <string name="buttonPi" translatable="false">π</string>
+    <string name="buttonE" translatable="false">e</string>
+    <string name="buttonF" translatable="false">φ</string>
 
-    <string name="buttonMemClear">MC</string>
-    <string name="buttonMemAdd">M+</string>
-    <string name="buttonMemRemove">M-</string>
-    <string name="buttonMemRecall">MR</string>
+    <string name="buttonMemClear" translatable="false">MC</string>
+    <string name="buttonMemAdd" translatable="false">M+</string>
+    <string name="buttonMemRemove" translatable="false">M-</string>
+    <string name="buttonMemRecall" translatable="false">MR</string>
 
     <string name="buttonHistory">history</string>
 
-    <string name="preferences">Preferences</string>
     <string name="history">History</string>
-    <string name="statistics">Statistics</string>
+    <string name="about">About</string>
 
     <string name="open">Open menu</string>
     <string name="close">Close menu</string>
-    <string name="placeholder">John Doe</string>
+    <string name="placeholder" translatable="false">John Doe</string>
     <string name="login">Please enter your name</string>
-    <string name="loginButton">OK</string>
-    <string name="dismissButton">Cancel</string>
+    <string name="loginButton" translatable="false">OK</string>
+
+    <string name="userName">Name</string>
+    <string name="buttonsClicked">Number of buttons clicked</string>
+    <string name="expression">Expression</string>
+    <string name="result">Result</string>
+    <string name="clearHistory">Clear History</string>
+
+    <string name="arithmeticException">This operation is not allowed</string>
+    <string name="illegalArgumentException">Something wrong with your expression. Check for mistakes</string>
+    <string name="addMemory">Result saved to memory</string>
+    <string name="subtractMemory">Result subtracted from memory</string>
+    <string name="clearMemory">Memory cleared</string>
+    <string name="cannotBeSaved">Cannot be saved while expression isn\'t finished</string>
+
+
 
 </resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_basic">Основное</string>
+    <string name="category_advanced">Дополнительно</string>
+    <string name="buttonHistory">История</string>
+    <string name="history">История</string>
+    <string name="open">Открыть меню</string>
+    <string name="close">Закрыть меню</string>
+    <string name="about">О программе</string>
+    <string name="login">Пожалуйста, введите своё имя</string>
+    <string name="userName">Имя</string>
+    <string name="buttonsClicked">Количество нажатых кнопок</string>
+    <string name="expression">Выражение</string>
+    <string name="result">Результат</string>
+    <string name="clearHistory">Очистить историю</string>
+    <string name="arithmeticException">Эта операция недопустима</string>
+    <string name="illegalArgumentException">Что-то не так с выражением. Пожалуйста, исправьте</string>
+    <string name="addMemory">Сохранено в память</string>
+    <string name="subtractMemory">Удалено из памяти</string>
+    <string name="clearMemory">Память очищена</string>
+    <string name="cannotBeSaved">Невозможно сохранить в памяти пока выражение не закончено</string>
+</resources>
