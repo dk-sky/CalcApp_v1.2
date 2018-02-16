@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    tools:context="com.applications.dk_sky.calcapp.AboutLayout"
+    style="@style/DialogTheme">
+
 
     <TextView
-        android:layout_margin="10dp"
-        android:id="@+id/about_text"
+        android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:text="@string/aboutContent"
         android:textColor="@color/primaryText"
         android:textSize="@dimen/plain_text"/>
+
 </RelativeLayout>

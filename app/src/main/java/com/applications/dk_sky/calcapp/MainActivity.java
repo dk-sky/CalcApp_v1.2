@@ -2,6 +2,7 @@ package com.applications.dk_sky.calcapp;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -91,6 +92,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+    }
+
+    public void openMenuItem(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                startActivity(new Intent(MainActivity.this,AboutLayout.class));
+                break;
+            case R.id.history:
+                startActivity(new Intent(MainActivity.this,HistoryLayout.class));
+                break;
+        }
     }
 
     @Override

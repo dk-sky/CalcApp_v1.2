@@ -66,7 +66,4 @@
     <string name="subtractMemory">Result subtracted from memory</string>
     <string name="clearMemory">Memory cleared</string>
     <string name="cannotBeSaved">Cannot be saved while expression isn\'t finished</string>
-
-
-
 </resources>
