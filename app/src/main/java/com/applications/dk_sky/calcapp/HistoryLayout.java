@@ -10,10 +10,6 @@ import android.util.Log;
 
 import java.util.List;
 
-/**
- * Created by livingston on 2/16/18.
- */
-
 public class HistoryLayout extends AppCompatActivity {
 
     RecyclerView recyclerView;

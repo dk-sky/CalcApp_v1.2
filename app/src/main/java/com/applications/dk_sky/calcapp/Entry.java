@@ -4,9 +4,6 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by livingston on 2/16/18.
- */
 
 @Entity(tableName = "entries")
 public class Entry {
@@ -27,7 +24,7 @@ public class Entry {
     @ColumnInfo(name = "result")
     private double result;
 
-    public Entry(String userName, int buttonsPressed, String expression, double result) {
+    Entry(String userName, int buttonsPressed, String expression, double result) {
         setUserName(userName);
         setButtonsPressed(buttonsPressed);
         setExpression(expression);
@@ -42,35 +39,35 @@ public class Entry {
         this.id = id;
     }
 
-    public String getUserName() {
+    String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    private void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public int getButtonsPressed() {
+    int getButtonsPressed() {
         return buttonsPressed;
     }
 
-    public void setButtonsPressed(int buttonsPressed) {
+    private void setButtonsPressed(int buttonsPressed) {
         this.buttonsPressed = buttonsPressed;
     }
 
-    public String getExpression() {
+    String getExpression() {
         return expression;
     }
 
-    public void setExpression(String expression) {
+    private void setExpression(String expression) {
         this.expression = expression;
     }
 
-    public double getResult() {
+    double getResult() {
         return result;
     }
 
-    public void setResult(double result) {
+    private void setResult(double result) {
         this.result = result;
     }
 }

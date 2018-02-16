@@ -6,19 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by livingston on 2/16/18.
- */
 
 class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ViewHolder> {
 
-    List<Entry> entries;
+    private List<Entry> entries;
 
 
-    public EntryAdapter(List<Entry> entries) {
+    EntryAdapter(List<Entry> entries) {
 
         this.entries = entries;
     }
@@ -42,12 +37,13 @@ class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ViewHolder> {
         return entries.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView userName;
-        public TextView buttonsPressed;
-        public TextView expression;
-        public TextView result;
-        public ViewHolder(View itemView) {
+    class ViewHolder extends RecyclerView.ViewHolder {
+        TextView userName;
+        TextView buttonsPressed;
+        TextView expression;
+        TextView result;
+
+        ViewHolder(View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.user_name);
             buttonsPressed = itemView.findViewById(R.id.buttons_pressed);

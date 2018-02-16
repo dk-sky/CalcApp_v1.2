@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-         db = Room.databaseBuilder(getApplicationContext(), HistoryDatabase.class, "history")
+        db = Room.databaseBuilder(getApplicationContext(), HistoryDatabase.class, "history")
                 .allowMainThreadQueries()
                 .build();
 
@@ -102,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
     public void openMenuItem(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about:
-                startActivity(new Intent(MainActivity.this,AboutLayout.class));
+                startActivity(new Intent(MainActivity.this, AboutLayout.class));
                 break;
             case R.id.history:
-                startActivity(new Intent(MainActivity.this,HistoryLayout.class));
+                startActivity(new Intent(MainActivity.this, HistoryLayout.class));
                 break;
         }
     }
@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
             dialog.dismiss();
         }
     }
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -159,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this, R.style.DialogTheme);
+        @SuppressLint("InflateParams")
         View view = getLayoutInflater().inflate(R.layout.layout_dialogue, null);
         final EditText editUserName = view.findViewById(R.id.edit_username);
 

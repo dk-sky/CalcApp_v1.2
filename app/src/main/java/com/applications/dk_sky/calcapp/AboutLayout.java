@@ -4,9 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by livingston on 2/16/18.
- */
 
 public class AboutLayout extends AppCompatActivity {
     @Override

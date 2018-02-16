@@ -6,14 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-/**
- * Created by D.Karabetskiy on 1/18/18.
- */
-
 public class KeyAdapter extends FragmentPagerAdapter {
     private Context mContext;
 
-    public KeyAdapter(Context context, FragmentManager fm) {
+    KeyAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }
