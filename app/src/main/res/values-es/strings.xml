@@ -2,10 +2,7 @@
 <resources>
     <string name="category_basic">básico</string>
     <string name="category_advanced">avanzado</string>
-    <string name="buttonHistory">historial</string>
-    <string name="history">historial</string>
-    <string name="open">Abrir menú</string>
-    <string name="close">Cerrar menú</string>
+    <string name="history">Historial</string>
     <string name="login">Por favor ingrese su nombre</string>
     <string name="userName">Nombre</string>
     <string name="buttonsClicked">Número de botones pulsados</string>

@@ -2,10 +2,7 @@
 <resources>
     <string name="category_basic">Основное</string>
     <string name="category_advanced">Дополнительно</string>
-    <string name="buttonHistory">История</string>
     <string name="history">История</string>
-    <string name="open">Открыть меню</string>
-    <string name="close">Закрыть меню</string>
     <string name="about">О программе</string>
     <string name="login">Пожалуйста, введите своё имя</string>
     <string name="userName">Имя</string>

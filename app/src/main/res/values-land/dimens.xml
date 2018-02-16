@@ -2,4 +2,5 @@
 <resources>
     <dimen name="main_text_button">22sp</dimen>
     <dimen name="function_text_button">18sp</dimen>
+    <dimen name="plain_text">20sp</dimen>
 </resources>

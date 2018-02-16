@@ -44,13 +44,12 @@
     <string name="buttonMemRemove" translatable="false">M-</string>
     <string name="buttonMemRecall" translatable="false">MR</string>
 
-    <string name="buttonHistory">history</string>
-
     <string name="history">History</string>
     <string name="about">About</string>
+    <string name="aboutContent" translatable="false">This is a placeholder for about text</string>
 
-    <string name="open">Open menu</string>
-    <string name="close">Close menu</string>
+    <string name="open" translatable="false">Open menu</string>
+    <string name="close" translatable="false">Close menu</string>
     <string name="placeholder" translatable="false">John Doe</string>
     <string name="login">Please enter your name</string>
     <string name="loginButton" translatable="false">OK</string>

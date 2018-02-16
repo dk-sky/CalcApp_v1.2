@@ -6,11 +6,16 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,14 +32,18 @@ public class MainActivity extends AppCompatActivity {
     private static final String OPERATORS = "+-/x^%";
     private static final String CONSTANTS = "πeφ";
 
+
+    // Declaration of shared variables, widgets and views
     private TextView txtDisplay;
+    private TextView userTextName;
     private static double calcMemory = 0;
     private static String userName;
     private static int buttonsPressed;
     private static AlertDialog dialog;
+    private ActionBarDrawerToggle toggle;
 
 
-    // Condition flags and counters for proper behavior
+    // Condition flags and counters for proper behavior of operators
     // and functionality of Delete button
     private boolean lastDigit;
     private boolean lastDot;
@@ -47,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i("Lifecycle", "Created");
-        if (userName == null) {
-            Log.i("Lifecycle", "user name is empty");
-        }
+
         // *** Layout-dependent logic ***
         Configuration configuration = getResources().getConfiguration();
         if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -68,6 +75,22 @@ public class MainActivity extends AppCompatActivity {
         lastDigit = true;
         lastDot = false;
         lastOpenBracket = false;
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        NavigationView navigationView = drawerLayout.findViewById(R.id.navigation_view);
+        View headerLayout = navigationView.getHeaderView(0);
+        userTextName = headerLayout.findViewById(R.id.nameView);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -76,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
         Log.i("Lifecycle", "Resume");
         if (userName == null) {
             openDialog();
-            Log.i("Lifecycle", "Show dialog");
+        } else {
+            userTextName.setText(userName);
         }
     }
 
@@ -86,14 +110,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("Lifecycle", "Pause");
         if (dialog != null) {
             dialog.dismiss();
-            Log.i("onPause", "dismiss dialog");
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i("Lifecycle", "Destroy");
     }
 
 
@@ -133,10 +150,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String insertedName = editUserName.getText().toString();
                 if (!insertedName.isEmpty()) {
+                    // Assign username
                     userName = insertedName;
+                    userTextName.setText(userName);
                     Log.i("login", "username " + userName);
                     dialog.dismiss();
                 } else {
+                    // Assign default name
                     userName = getResources().getString(R.string.placeholder);
                     Log.i("login", "username " + userName);
                 }
@@ -213,6 +233,9 @@ public class MainActivity extends AppCompatActivity {
                 // Get input to parse into expression, format it and evaluate
                 String input = txtDisplay.getText().toString();
                 double result = calculateResult(input);
+                if (Double.isNaN(result)) {
+                    throw new ArithmeticException();
+                }
                 txtDisplay.setText(Double.toString(result));
                 updateFlags();
 
@@ -238,6 +261,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 String input = txtDisplay.getText().toString();
                 double result = calculateResult(input);
+                if (Double.isNaN(result)) {
+                    throw new ArithmeticException();
+                }
                 calcMemory += result;
                 Toast.makeText(this, getResources().getString(R.string.addMemory), Toast.LENGTH_SHORT).show();
             } catch (ArithmeticException ex) {
@@ -263,6 +289,9 @@ public class MainActivity extends AppCompatActivity {
             String input = txtDisplay.getText().toString();
             try {
                 double result = calculateResult(input);
+                if (Double.isNaN(result)) {
+                    throw new ArithmeticException();
+                }
                 calcMemory -= result;
                 Toast.makeText(this, getResources().getString(R.string.subtractMemory), Toast.LENGTH_SHORT).show();
             } catch (ArithmeticException ex) {
@@ -292,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Expression evaluation logic
     private double calculateResult(String input) throws ArithmeticException, IllegalArgumentException {
+        // Adjusting expression for evaluation
         input = input.replace("x", "*")
                 .replace("³√", "cbrt")
                 .replace("√", "sqrt")
@@ -331,6 +361,7 @@ public class MainActivity extends AppCompatActivity {
         updateFlags();
     }
 
+    // Updates conditional flags based on the value of last character of the expression
     private void updateFlags() {
         // Check new last character
         String newValue = txtDisplay.getText().toString();
@@ -447,7 +478,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Custom functions and operators for expression
-
     Function fact = new Function("fact") {
         @Override
         public double apply(double... args) {
