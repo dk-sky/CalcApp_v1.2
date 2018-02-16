@@ -8,12 +8,12 @@ import android.arch.persistence.room.PrimaryKey;
  * Created by livingston on 2/16/18.
  */
 
-@Entity
+@Entity(tableName = "entries")
 public class Entry {
 
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int id;
 
     @ColumnInfo(name = "user_name")
     private String userName;
@@ -28,10 +28,10 @@ public class Entry {
     private double result;
 
     public Entry(String userName, int buttonsPressed, String expression, double result) {
-        this.userName = userName;
-        this.buttonsPressed = buttonsPressed;
-        this.expression = expression;
-        this.result = result;
+        setUserName(userName);
+        setButtonsPressed(buttonsPressed);
+        setExpression(expression);
+        setResult(result);
     }
 
     public int getId() {

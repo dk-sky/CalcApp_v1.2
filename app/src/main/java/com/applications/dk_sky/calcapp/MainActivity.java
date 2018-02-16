@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Entry entry = new Entry(userName, buttonsPressed, input, result);
 
-                db.dataAccessObject().insertAll(entry);
+                db.dataAccessObject().insertEntries(entry);
 
                 buttonsPressed = 0;
             } catch (ArithmeticException ex) {
