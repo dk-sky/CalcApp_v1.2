@@ -29,4 +29,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.android.support:design:27.0.2'
     compile 'net.objecthunter:exp4j:0.4.6'
+
+    // Room (use 1.1.0-alpha2 for latest alpha)
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 }

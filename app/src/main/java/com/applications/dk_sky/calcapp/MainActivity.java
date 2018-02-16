@@ -1,13 +1,11 @@
 package com.applications.dk_sky.calcapp;
 
 import android.annotation.SuppressLint;
+import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -42,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private static int buttonsPressed;
     private static AlertDialog dialog;
     private ActionBarDrawerToggle toggle;
+    public HistoryDatabase db;
 
 
     // Condition flags and counters for proper behavior of operators
@@ -87,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
         userTextName = headerLayout.findViewById(R.id.nameView);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+         db = Room.databaseBuilder(getApplicationContext(), HistoryDatabase.class, "history")
+                .allowMainThreadQueries()
+                .build();
+
     }
 
     @Override
@@ -250,6 +255,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 txtDisplay.setText(Double.toString(result));
                 updateFlags();
+
+                Entry entry = new Entry(userName, buttonsPressed, input, result);
+
+                db.dataAccessObject().insertAll(entry);
 
                 buttonsPressed = 0;
             } catch (ArithmeticException ex) {
