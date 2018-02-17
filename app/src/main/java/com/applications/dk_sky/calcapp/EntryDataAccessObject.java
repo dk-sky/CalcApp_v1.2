@@ -14,5 +14,7 @@ public interface EntryDataAccessObject {
     @Insert
     void insertEntries(Entry... entries);
 
+    @Query("DELETE FROM entries")
+    void deleteAll();
 
 }
