@@ -355,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
         return expression.evaluate();
     }
 
-    // Pressing "DEL"
+    // Pressing "<-" (backspace button)
     public void onDeleteClick(View view) {
         buttonsPressed++;
         String oldValue = txtDisplay.getText().toString();

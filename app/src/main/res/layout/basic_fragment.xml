@@ -23,11 +23,12 @@
             tools:ignore="NestedWeights" />
 
 
-        <Button
+        <ImageView
             style="@style/MainButtonStyle"
+            android:gravity ="center"
+            android:src="@drawable/ic_back"
             android:onClick="onDeleteClick"
-            android:text="@string/buttonDelete"
-            android:textColor="@color/colorAccent"/>
+            android:contentDescription="@string/buttonDelete" />
 
         <Button
             style="@style/MainButtonStyle"
